@@ -87,3 +87,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Reference
 * [reactnd-project-myreads-starter](https://github.com/udacity/reactnd-project-myreads-starter)
 * [Create React App](https://github.com/facebookincubator/create-react-app)
+* Gratitude to from [Tutorial Requests: FEND Project 6 - Walk Through](https://www.youtube.com/watch?v=acJHkd6K5kI)
