@@ -28,6 +28,15 @@ class SearchPage extends React.Component {
         }
     }
 
+    updateBook = (book, shelf) => {
+        BooksAPI.update(book, shelf).then(() => {
+            book.shelf = shelf;
+            this.setState(state => ({
+                books: state.books.filter(b => b.id !== book.id).concat([book])
+            }));
+        });
+    }
+
     render() {
         return (
             <div className="search-books">
@@ -41,7 +50,7 @@ class SearchPage extends React.Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         {this.state.searchBooks.map((book, key) =>
-                            <Books updateBook={this.updateShelf}
+                            <Books updateBook={this.updateBook}
                                    key={key}
                                    book={book}/>)
                         }
