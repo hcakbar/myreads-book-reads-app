@@ -28,16 +28,6 @@ class SearchPage extends React.Component {
         }
     }
 
-    updateShelf = (newBook, shelf) => {
-        BooksAPI.update(newBook, shelf).then(() => {
-            newBook.shelf = shelf;
-            let updateBook = this.state.books.filter(book => book.id != newBook.id);
-            updateBook.push(newBook);
-            this.setState({books : updateBook})
-
-        });
-    }
-
     render() {
         return (
             <div className="search-books">
