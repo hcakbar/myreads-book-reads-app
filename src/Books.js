@@ -8,7 +8,7 @@ class Books extends React.Component {
         if(this.props.book.imageLinks) {
             bookImage = this.props.book.imageLinks.thumbnail;
         } else {
-            bookImage = "Sorry No Book Image"
+            bookImage = 'url("http://via.placeholder.com/128x193?text=No%20Image")'
         }
         return (
             <div className="book">
@@ -21,7 +21,7 @@ class Books extends React.Component {
                     </div>
                     <div className="book-shelf-changer">
                         <select onChange={(event) => { this.props.updateBook(this.props.book, event.target.value)}}
-                                value={this.props.book.shelf || "No Shelf"}>
+                                value={this.props.book.shelf || 'none'}>
                             <option value="move" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
@@ -31,7 +31,7 @@ class Books extends React.Component {
                     </div>
                 </div>
                 <div className="book-title">{this.props.book.title}</div>
-                <div className="book-authors">{this.props.book.authors || "No Author Found"}</div>
+                <div className="book-authors">{this.props.book.authors ? this.props.book.authors.join(', ') : "No Author Found"}</div>
             </div>
         )
     }

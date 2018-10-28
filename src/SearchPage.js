@@ -10,22 +10,33 @@ class SearchPage extends React.Component {
         query: ''
     }
 
+    componentDidMount() {
+        BooksAPI.getAll().then(response => {
+            this.setState({books: response}
+            )
+        });
+    }
+
     updateQuery = (query) => {
         this.setState({query: query}, this.searchBooks)
     }
 
     searchBooks() {
-        if (this.state.query) {
-            BooksAPI.search(this.state.query.trim()).then(response => {
-                if (response.error) {
-                    return this.setState({searchBooks: []});
-                } else {
-                    return this.setState({searchBooks: response});
-                }
-            });
-        } else {
-            return this.setState({response: []});
+        if (this.state.query === '' || this.state.query === undefined) {
+            return this.setState({searchBooks: []});
         }
+        BooksAPI.search(this.state.query.trim()).then(response => {
+            if (!response.error) {
+                response.forEach(element => {
+                    let filter = this.state.books.filter(book => book.id === element.id);
+                    element.shelf = filter[0] ? filter[0].shelf : null;
+                    console.log('shelf ' + element.shelf)
+                });
+                return this.setState({searchBooks: response})
+            } else {
+                return this.setState({searchBooks: []});
+            }
+        });
     }
 
     updateBook = (book, shelf) => {
