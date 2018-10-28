@@ -25,7 +25,7 @@ class BooksApp extends React.Component {
                 <Switch>
                     <Route exact path="/" component={HomePage}/>
                     <Route exact path="/search" component={SearchPage}/>
-                    <Route component={NoMatch}/>
+                    <Route component={NoMatch}/> {/*invalid url error page*/}
                 </Switch>
             </div>
         );
